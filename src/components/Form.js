@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 function Form() {
 
   const classes = useStyles();
+  const [firstName, setFirstName] = useState("")
 
   return (
     <form className={classes.root}>
