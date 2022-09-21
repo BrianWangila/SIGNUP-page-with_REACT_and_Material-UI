@@ -1,6 +1,7 @@
  import React, { useState } from "react";
- import { Button } from '@material-ui/core'
- import ModalDialog from "./ModalDialog";
+ import { Button, Dialog } from '@material-ui/core'
+ import Form from "./Form";
+
  
  function SignUp() {
 
@@ -20,7 +21,9 @@
           SIGNUP
         </Button>
 
-        <ModalDialog open={open} handleClose={handleClose}/>
+        <Dialog open={open} onClose={handleClose}>
+          <Form handleClose={handleClose}/>
+        </Dialog>
       </div>
    )
  }

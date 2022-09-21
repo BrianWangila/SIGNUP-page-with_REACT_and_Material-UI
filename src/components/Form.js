@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import { TextField, Button, makeStyles } from '@material-ui/core'
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,22 +21,62 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Form() {
+function Form( { handleClose } ) {
 
   const classes = useStyles();
   const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log(firstName, lastName, email, password);
+    handleClose();
+  }
 
   return (
-    <form className={classes.root}>
-      <TextField label="First Name" variant="filled" required/>
-      <TextField label="Last Name" variant="filled" required/>
-      <TextField label="Email" variant="filled" type="email" required/>
-      <TextField label="Password" variant="filled" type="password" required/>
-      <div>
-        <Button variant="contained">Cancel</Button>
-        <Button variant="contained">Signup</Button>
-      </div>
-    </form>
+      <form className={classes.root} onSubmit={handleSignup}>
+        <TextField 
+          label="First Name" 
+          variant="filled" 
+          required
+          value={firstName}
+          onChange = {(e) => setFirstName(e.target.value)}
+        />
+
+        <TextField 
+          label="Last Name" 
+          variant="filled" 
+          required
+          value={lastName}
+          onChange = {(e) => setLastName(e.target.value)}
+        />
+
+        <TextField 
+          label="Email" 
+          variant="filled" 
+          type="email" 
+          required
+          value={email}
+          onChange = {(e) => setEmail(e.target.value)}
+        />
+
+        <TextField 
+          label="Password" 
+          variant="filled" 
+          type="password" 
+          required
+          value={password}
+          onChange = {(e) => setPassword(e.target.value)}
+        />
+
+        <div>
+          <Button variant="contained" onClick={handleClose}>Cancel</Button>
+          <Button type="submit" variant="contained">Signup</Button>
+        </div>
+      </form>
   )
 }
 
